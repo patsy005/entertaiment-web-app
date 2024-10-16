@@ -1,0 +1,79 @@
+.form {
+	background-color: $semi-dark-blue;
+	border-radius: 20px;
+	padding: 2.4rem;
+	margin-top: 5.8rem;
+	gap: 4rem;
+
+	&__title {
+		font-feature-settings: 'liga' off, 'clig' off;
+		font-size: 3.2rem;
+		columns: $white;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+		letter-spacing: -0.5px;
+	}
+
+	&__inputs {
+		gap: 2.4rem;
+		position: relative;
+
+		span {
+			color: $red;
+			font-size: 1.5rem;
+			margin-top: 1rem;
+			display: block;
+		}
+	}
+
+	&__input {
+		padding: 1.8rem 1.6rem;
+		border: unset;
+		border-bottom: 1px solid $greyish-blue;
+		background: transparent;
+		font-size: 1.5rem;
+		cursor: pointer;
+		transition: all 0.3s ease-in-out;
+		color: $white;
+		width: 100%;
+
+		&::placeholder {
+			font-weight: 400;
+			opacity: 0.5;
+		}
+
+		&:active,
+		&:focus {
+			outline: none;
+			border-bottom-color: $white;
+			color: $white;
+			caret-color: $red;
+		}
+
+		&--error {
+			border-bottom-color: $red;
+		}
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.form {
+		padding: 3.2rem;
+		width: 60%;
+
+		&__input-box {
+			span {
+				position: absolute;
+				top: 1.8rem;
+				right: 1.6rem;
+				margin-top: 0;
+			}
+		}
+	}
+}
+@media screen and (min-width:1200px) {
+	.form {
+		width: 50%;
+	}
+}

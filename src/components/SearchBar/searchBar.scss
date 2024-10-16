@@ -1,0 +1,41 @@
+.search-bar {
+	gap: 2.4rem;
+	padding: 2.4rem 1.6rem 0 1.6rem;
+
+	.input-box {
+		flex-grow: 1;
+		input {
+			width: 100%;
+			border: none;
+			background: transparent;
+			font-size: 2.4rem;
+			color: $white;
+			border-bottom: 1px solid transparent;
+			transition: all 0.3s ease-in-out;
+
+			&::placeholder {
+				opacity: 0.4979;
+				font-size: 1.6rem;
+			}
+
+			&:active,
+			&:focus {
+				outline: none;
+				border-bottom: 1px solid $greyish-blue;
+				caret-color: $red;
+				font-size: 2.4rem;
+
+				&::placeholder {
+					font-size: 1.6rem;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (min-width: 1200px){
+	.search-bar {
+		padding-left: 3.2rem;
+		padding-top: 3.2rem;
+	}
+}

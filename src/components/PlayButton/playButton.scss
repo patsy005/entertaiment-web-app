@@ -1,0 +1,32 @@
+.play-button {
+	border-radius: 28.5px;
+	background-color: rgba(255, 255, 255, 0.25);
+	border: none;
+	width: auto;
+	padding: 0.9rem 2.4rem 0.9rem 0.9rem;
+	margin: 0 auto;
+	// display: none;
+	visibility: hidden;
+	transition: display 0.3s ease-in-out;
+	z-index: 10;
+	// position: absolute;
+	// top: 50%;
+	// left: 50%;
+	// transform: translate(-50%, -50%);
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+
+	&__content {
+		opacity: 1;
+		gap: 1.9rem;
+
+		p {
+			color: $white;
+			font-size: 1.8rem;
+			font-weight: 400;
+		}
+	}
+}

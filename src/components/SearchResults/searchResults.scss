@@ -1,0 +1,24 @@
+.searched-results {
+	padding: 2.4rem 1.6rem 0 1.6rem;
+	p {
+		font-size: 2rem;
+		font-style: normal;
+		letter-spacing: -0.312px;
+		font-weight: 400;
+		line-height: normal;
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.searched-results {
+		font-size: 3.2rem;
+		letter-spacing: -0.5px;
+	}
+}
+
+@media (min-width: 1200px) {
+	.searched-results {
+		padding-left: 3.2rem;
+		padding-top: 3.2rem;
+	}
+}

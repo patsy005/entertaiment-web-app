@@ -1,0 +1,47 @@
+.trending-box {
+	height: 140px;
+}
+.movie-box {
+	border-radius: 8px;
+	padding: 1.6rem;
+	height: 110px;
+	gap: 0.5rem;
+	color: $white;
+	position: relative;
+
+	&.hovered {
+
+		&__info {
+			align-self: flex-end;
+		}
+
+		.play-button {
+			visibility: visible;
+		}
+	}
+
+	&__title {
+		h4 {
+			font-size: 1.5rem;
+			font-weight: 400;
+			line-height: normal;
+			font-style: normal;
+		}
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.trending-box {
+		height: 230px;
+	}
+
+	.movie-box {
+		height: 140px;
+	}
+}
+
+@media screen and (min-width: 992px) {
+	.movie-box {
+		height: 172px;
+	}
+}

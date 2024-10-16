@@ -1,0 +1,11 @@
+.trending-slider {
+	overflow: hidden;
+
+	.trending-slides {
+		transition: transform 0.5s ease-in-out;
+
+		.trending-box {
+			cursor: pointer;
+		}
+	}
+}

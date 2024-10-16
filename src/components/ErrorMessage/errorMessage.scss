@@ -1,0 +1,10 @@
+.error-message {
+	padding: 1.6rem;
+	border-radius: 6px;
+	background-color: $red;
+
+	&__text {
+		font-size: 1.4rem;
+		color: $white;
+	}
+}
