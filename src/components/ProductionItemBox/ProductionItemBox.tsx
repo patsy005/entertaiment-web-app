@@ -23,8 +23,8 @@ export default function ProductionItemBox({ children, className, production }: P
 
 	const productionUrl = useMemo(() => {
 		return production?.isTrending
-			? `/public/thumbnails/${production?.thumbnail.trending.small}`
-			: `/public/thumbnails/${production?.thumbnail.regular.small}`
+			? `thumbnails/${production?.thumbnail.trending.small}`
+			: `/thumbnails/${production?.thumbnail.regular.small}`
 	}, [production])
 
 	const movieBoxStyle = {
