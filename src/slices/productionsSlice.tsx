@@ -1,0 +1,124 @@
+import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit'
+import { RootState } from '../store'
+
+type ThumbnailType = {
+	regular: {
+		small: string
+		medium: string
+		large: string
+	}
+	trending: {
+		small: string
+		large: string
+	}
+}
+
+export type ProductionType = {
+	category: string
+	isBookmarked: boolean
+	isTrending: boolean
+	rating: string
+	title: string
+	year: number
+	thumbnail: ThumbnailType
+}
+
+type ProductionsState = {
+	productions: ProductionType[]
+	isLoading: boolean
+	isFetching: boolean
+	error: string
+	bookmarkedProductions: ProductionType[]
+	productionsToFiler: ProductionType[]
+}
+
+const initialState: ProductionsState = {
+	productions: [],
+	isLoading: false,
+	isFetching: false,
+	error: '',
+	bookmarkedProductions: [],
+	productionsToFiler: [],
+}
+
+export const fetchProductions = createAsyncThunk('productions/fetchProductions', async () => {
+	const response = await fetch('/data.json')
+	const data = await response.json()
+	return data
+})
+
+const productionsSlice = createSlice({
+	name: 'productions',
+	initialState,
+	reducers: {
+		toggleBookmark: (state, action) => {
+			state.productions.map(production => {
+				if (production.title === action.payload) {
+					production.isBookmarked = !production.isBookmarked
+
+					if (production.isBookmarked) {
+						state.bookmarkedProductions.push(production)
+					} else {
+						state.bookmarkedProductions = state.bookmarkedProductions.filter(prod => prod.title !== production.title)
+					}
+				}
+			})
+		},
+		// setProductionsToFilter: (state, action) => {
+
+		// },
+		filterProductions: (state, action) => {
+			state.productions.map(p => console.log(p.title))
+			// state.productions = state.productions.filter(production =>
+			// 	production.title.includes(action.payload.toLowerCase())
+			// )
+			state.productions.filter(production =>
+				production.title.includes(action.payload.toLowerCase())
+			)
+			console.log(action.payload)
+		},
+	},
+	extraReducers: builder => {
+		builder.addCase(fetchProductions.pending, state => {
+			state.isLoading = true
+			state.isFetching = true
+		})
+		builder.addCase(fetchProductions.fulfilled, (state, action) => {
+			state.isLoading = false
+			state.isFetching = false
+			state.productions = action.payload
+			state.bookmarkedProductions = action.payload.filter((production: ProductionType) => production.isBookmarked)
+		})
+		builder.addCase(fetchProductions.rejected, state => {
+			state.isLoading = false
+			state.isFetching = false
+			state.error = 'Failed to fetch productions'
+		})
+	},
+})
+
+export const selectProductions = (state: RootState) => state.productions.productions
+export const selectBookmarkedProductions = (state: RootState) => state.productions.bookmarkedProductions
+
+export const selectMovies = createSelector(selectProductions, productions =>
+	productions.filter(production => production.category === 'Movie')
+)
+
+export const selectTVSeries = createSelector(selectProductions, productions =>
+	productions.filter(production => production.category === 'TV Series')
+)
+
+export const selectIsTrending = createSelector(selectProductions, productions =>
+	productions.filter(production => production.isTrending)
+)
+
+export const selectBookmarkedMovies = createSelector(selectBookmarkedProductions, productions =>
+	productions.filter(production => production.category === 'Movie')
+)
+
+export const selectBookmarkedTVSeries = createSelector(selectBookmarkedProductions, productions =>
+	productions.filter(production => production.category === 'TV Series')
+)
+
+export const { toggleBookmark, filterProductions } = productionsSlice.actions
+export default productionsSlice.reducer

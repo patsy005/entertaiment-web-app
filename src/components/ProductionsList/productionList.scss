@@ -1,0 +1,11 @@
+.production-list {
+	row-gap: 1.5rem;
+
+	&__isTrending {
+		flex-wrap: nowrap;
+	}
+
+	&__box {
+		row-gap: 0.8rem;
+	}
+}

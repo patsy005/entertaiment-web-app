@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import './colors.scss';
+@import './typography.scss';
+@import '../src/ui/Nav/nav.scss';
+@import '../src/components/SearchBar/searchBar.scss';
+@import '../src/components/SectionHeading/section-heading.scss';
+@import '../src/components/TrendingBox/trendingBox.scss';
+@import '../src/components/Bookmark/bookmark.scss';
+@import '../src/components/PlayButton/playButton.scss';
+@import '../src/components/ProductionItemBox/productionItemBox.scss';
+@import '../src/components/ProductionItem/productionItem.scss';
+@import '../src/components/ProductionsList/productionList.scss';
+@import '../src/components/TrendingListSlider/trendingListSlider.scss';
+@import '../src/components/ProductionInfo/productionInfo.scss';
+
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	background-color: $dark-blue;
+	font-feature-settings: 'liga' off, 'clig' off;
+	color: $white;
+	font-family: 'Outfit', sans-serif;
+	height: 100%;
+	overflow-x: hidden;
+}
+
+body > * {
+	transform: unset !important;
+}
+
+p,
+h4 {
+	margin-bottom: 0 !important;
+}
+
+.main {
+	padding: 2.4rem 1.6rem;
+}
+
+@media screen and (min-width: 1200px) {
+	.app-container {
+		padding: 3.2rem !important;
+	}
+
+	.app-container {
+		display: flex;
+	}
+
+	.main {
+		padding: unset;
+		padding-left: 3.2rem;
+		padding-top: 3.2rem;
+	}
+}

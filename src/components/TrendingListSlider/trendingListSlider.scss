@@ -1,0 +1,17 @@
+.trending-slider {
+	.trending-slides {
+		transition: transform 0.5s ease-in-out;
+
+		.trending-box {
+			cursor: pointer;
+		}
+	}
+}
+
+@media screen and (min-width: 992px) {
+	.trending-slider {
+		overflow: hidden;
+		padding-right: 100vw;
+		margin-right: -100vw;
+	}
+}
