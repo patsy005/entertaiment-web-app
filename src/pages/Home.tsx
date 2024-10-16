@@ -2,7 +2,7 @@ import ProductionsList from '../components/ProductionsList/ProductionsList'
 import SearchBar from '../components/SearchBar/SearchBar'
 import SectionHeading from '../components/SectionHeading/SectionHeading'
 import TrendingListSlider from '../components/TrendingListSlider/TrendingListSlider'
-import { selectIsTrending, selectProductions } from '../slices/productionsSlice'
+import { selectAllProductions, selectIsTrending } from '../slices/productionsSlice'
 
 export default function Home() {
 	return (
@@ -16,7 +16,7 @@ export default function Home() {
 
 			<section className="section">
 				<SectionHeading heading="Recommended for you" />
-				<ProductionsList selector={selectProductions} stringSelector="all" />
+				<ProductionsList selector={selectAllProductions} stringSelector="all" />
 			</section>
 		</div>
 	)

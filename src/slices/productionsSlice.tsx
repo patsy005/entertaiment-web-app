@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../store'
 
 type ThumbnailType = {
@@ -29,7 +29,7 @@ type ProductionsState = {
 	isFetching: boolean
 	error: string
 	bookmarkedProductions: ProductionType[]
-	productionsToFiler: ProductionType[]
+	searchTerm: string
 }
 
 const initialState: ProductionsState = {
@@ -38,7 +38,7 @@ const initialState: ProductionsState = {
 	isFetching: false,
 	error: '',
 	bookmarkedProductions: [],
-	productionsToFiler: [],
+	searchTerm: '',
 }
 
 export const fetchProductions = createAsyncThunk('productions/fetchProductions', async () => {
@@ -72,10 +72,11 @@ const productionsSlice = createSlice({
 			// state.productions = state.productions.filter(production =>
 			// 	production.title.includes(action.payload.toLowerCase())
 			// )
-			state.productions.filter(production =>
-				production.title.includes(action.payload.toLowerCase())
-			)
+			state.productions.filter(production => production.title.includes(action.payload.toLowerCase()))
 			console.log(action.payload)
+		},
+		setSearchTerm: (state, action: PayloadAction<string>) => {
+			state.searchTerm = action.payload
 		},
 	},
 	extraReducers: builder => {
@@ -98,13 +99,25 @@ const productionsSlice = createSlice({
 })
 
 export const selectProductions = (state: RootState) => state.productions.productions
+export const selectSearchTerm = (state: RootState) => state.productions.searchTerm
+
 export const selectBookmarkedProductions = (state: RootState) => state.productions.bookmarkedProductions
 
-export const selectMovies = createSelector(selectProductions, productions =>
+export const selectFilteredProductions = createSelector(
+	[selectProductions, selectSearchTerm],
+	(productions, searchTerm) => {
+		if (!searchTerm) return productions
+		return productions.filter(production => production.title.toLowerCase().includes(searchTerm.toLowerCase()))
+	}
+)
+
+export const selectAllProductions = createSelector(selectFilteredProductions, productions => productions)
+
+export const selectMovies = createSelector(selectFilteredProductions, productions =>
 	productions.filter(production => production.category === 'Movie')
 )
 
-export const selectTVSeries = createSelector(selectProductions, productions =>
+export const selectTVSeries = createSelector(selectFilteredProductions, productions =>
 	productions.filter(production => production.category === 'TV Series')
 )
 
@@ -120,5 +133,5 @@ export const selectBookmarkedTVSeries = createSelector(selectBookmarkedProductio
 	productions.filter(production => production.category === 'TV Series')
 )
 
-export const { toggleBookmark, filterProductions } = productionsSlice.actions
+export const { toggleBookmark, filterProductions, setSearchTerm } = productionsSlice.actions
 export default productionsSlice.reducer
