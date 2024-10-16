@@ -1,4 +1,4 @@
-import { type ReactNode, useMemo, useState } from 'react'
+import { type ReactNode, useEffect, useMemo, useState } from 'react'
 import Bookmark from '../Bookmark/Bookmark'
 import PlayButton from '../PlayButton/PlayButton'
 import { ProductionType } from '../../slices/productionsSlice'
@@ -12,6 +12,37 @@ type ProductionItemBoxProps = {
 
 export default function ProductionItemBox({ children, className, production }: ProductionItemBoxProps) {
 	const [isHovered, setIsHovered] = useState(false)
+	// const [screenWidth, setScreenWidth] = useState(window.innerWidth)
+	type RegularImage = 'small' | 'medium' | 'large'
+	type TrendingImage = 'small' | 'large'
+	type ImageSize = RegularImage | TrendingImage
+	const [imageSize, setImageSize] = useState<ImageSize>('small')
+
+	useEffect(() => {
+		const handleResize = () => {
+			if (production.isTrending) {
+				if (window.innerWidth > 768) {
+					setImageSize('large')
+				} else {
+					setImageSize('small')
+				}
+			} else {
+				if (window.innerWidth > 992) {
+					setImageSize('large')
+				} else if (window.innerWidth > 768) {
+					setImageSize('medium')
+				} else {
+					setImageSize('small')
+				}
+			}
+		}
+
+		window.addEventListener('resize', handleResize)
+
+		return () => {
+			window.removeEventListener('resize', handleResize)
+		}
+	}, [])
 
 	const handleMouseEnter = () => {
 		setIsHovered(true)
@@ -22,10 +53,14 @@ export default function ProductionItemBox({ children, className, production }: P
 	}
 
 	const productionUrl = useMemo(() => {
-		return production?.isTrending
-			? `/public/thumbnails/${production?.thumbnail.trending.small}`
-			: `/public/thumbnails/${production?.thumbnail.regular.small}`
-	}, [production])
+		if (production?.isTrending) {
+			const trendingSize = imageSize as 'small' | 'large';
+			return `thumbnails/${production?.thumbnail.trending[trendingSize]}`
+		} else {
+			const regularSize = imageSize as 'small' | 'medium' | 'large';
+			return `thumbnails/${production?.thumbnail.regular[regularSize]}`
+		}
+	}, [production, imageSize])
 
 	const movieBoxStyle = {
 		backgroundImage: isHovered

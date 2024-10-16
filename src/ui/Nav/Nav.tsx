@@ -16,7 +16,7 @@ export default function Nav() {
 				</ul>
 
 				<div className="nav__user">
-					<img src="/public/images/image-avatar.png" alt="" />
+					<img src="/images/image-avatar.png" alt="" />
 				</div>
 			</div>
 		</div>
