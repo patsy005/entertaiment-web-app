@@ -1,9 +1,6 @@
-import data from '../../data.json'
 import { ProductionType } from '../../slices/productionsSlice'
 import ProductionInfo from '../ProductionInfo/ProductionInfo'
 import ProductionItemBox from '../ProductionItemBox/ProductionItemBox'
-
-console.log(data)
 
 type MovieBoxProps = {
 	production: ProductionType

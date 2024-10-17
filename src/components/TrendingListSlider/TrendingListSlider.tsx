@@ -26,7 +26,6 @@ export default function TrendingListSlider({ selector, stringSelector }: Product
 
 	useEffect(() => {
 		const handleResize = () => {
-			// setIsSmallScreen(window.innerWidth < 992)
 			if (window.innerWidth < 768) {
 				setSlideWidth(66.8)
 			} else {
@@ -117,7 +116,6 @@ export default function TrendingListSlider({ selector, stringSelector }: Product
 			onTouchStart={handleTouchStart}
 			onTouchMove={handleDragAndTouchMove}
 			onTouchEnd={handleTouchAndDragEnd}
-			// style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
 		>
 			<div
 				className={`trending-slides production-list d-flex row production-list__${stringSelector}`}

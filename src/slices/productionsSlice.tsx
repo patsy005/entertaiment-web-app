@@ -64,16 +64,8 @@ const productionsSlice = createSlice({
 				}
 			})
 		},
-		// setProductionsToFilter: (state, action) => {
-
-		// },
 		filterProductions: (state, action) => {
-			state.productions.map(p => console.log(p.title))
-			// state.productions = state.productions.filter(production =>
-			// 	production.title.includes(action.payload.toLowerCase())
-			// )
 			state.productions.filter(production => production.title.includes(action.payload.toLowerCase()))
-			console.log(action.payload)
 		},
 		setSearchTerm: (state, action: PayloadAction<string>) => {
 			state.searchTerm = action.payload
@@ -111,7 +103,7 @@ export const selectFilteredProductions = createSelector(
 	}
 )
 
-export const selectAllProductions = createSelector(selectFilteredProductions, productions => productions)
+export const selectAllProductions = createSelector(selectFilteredProductions, productions => [...productions])
 
 export const selectMovies = createSelector(selectFilteredProductions, productions =>
 	productions.filter(production => production.category === 'Movie')

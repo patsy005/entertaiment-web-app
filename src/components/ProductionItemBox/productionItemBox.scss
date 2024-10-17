@@ -8,19 +8,15 @@
 	gap: 0.5rem;
 	color: $white;
 	position: relative;
-	// transition: all 0.3s ease-in-out;
 
 	&.hovered {
-		// justify-content: center !important;
 
 		&__info {
 			align-self: flex-end;
 		}
 
 		.play-button {
-			// display: flex;
 			visibility: visible;
-			// width: 40%;
 		}
 	}
 

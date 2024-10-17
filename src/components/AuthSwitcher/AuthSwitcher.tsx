@@ -1,18 +1,38 @@
-import { Link } from "react-router-dom"
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { selectError } from '../../slices/authSlice'
 
 type AuthSwitcherProps = {
-    hasAccount: boolean
+	hasAccount: boolean
 }
 export default function AuthSwitcher({ hasAccount }: AuthSwitcherProps) {
-  return (
-    <>
-        {hasAccount && (
-            <p className="auth-switcher">Already have an account? <Link to='/login' >Login</Link></p>
-        )}
+	const serverError = useSelector(selectError)
 
-        {!hasAccount && (
-            <p className="auth-switcher">Don't have an account? <Link to='/signUn'>Sign Up</Link></p>
-        )}
-    </>
-  )
+	return (
+		<>
+			{hasAccount && !serverError && (
+				<p className="auth-switcher">
+					Already have an account? <Link to="/login">Login</Link>
+				</p>
+			)}
+
+			{!hasAccount && !serverError && (
+				<p className="auth-switcher">
+					Don't have an account? <Link to="/signup">Sign Up</Link>
+				</p>
+			)}
+
+			{!hasAccount && serverError && (
+				<p className="auth-switcher auth-switcher__server-error">
+					{serverError} <Link to="/signup">Sign Up</Link>
+				</p>
+			)}
+
+			{hasAccount && serverError && (
+				<p className="auth-switcher auth-switcher__server-error">
+					{serverError} <Link to="/login">Login</Link>
+				</p>
+			)}
+		</>
+	)
 }

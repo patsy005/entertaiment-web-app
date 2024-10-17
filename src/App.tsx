@@ -9,19 +9,20 @@ import Movies from './pages/Movies'
 import TVSeries from './pages/TVSeries'
 import Bookmarked from './pages/Bookmarked'
 import Login from './pages/Login'
+import SignUp from './pages/SignUp'
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 
 const router = createBrowserRouter([
 	{
-		element: <Layout />,
-
+		element: (
+			<ProtectedRoute>
+				<Layout />
+			</ProtectedRoute>
+		),
 		children: [
 			{
 				path: '/',
 				element: <Home />,
-			},
-			{
-				path: '/login',
-				element: <Login />,
 			},
 			{
 				path: '/movies',
@@ -34,8 +35,16 @@ const router = createBrowserRouter([
 			{
 				path: '/bookmarked',
 				element: <Bookmarked />,
-			}
+			},
 		],
+	},
+	{
+		path: '/login',
+		element: <Login />,
+	},
+	{
+		path: '/signup',
+		element: <SignUp />,
 	},
 ])
 

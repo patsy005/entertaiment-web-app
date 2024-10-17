@@ -12,7 +12,6 @@ type ProductionItemBoxProps = {
 
 export default function ProductionItemBox({ children, className, production }: ProductionItemBoxProps) {
 	const [isHovered, setIsHovered] = useState(false)
-	// const [screenWidth, setScreenWidth] = useState(window.innerWidth)
 	type RegularImage = 'small' | 'medium' | 'large'
 	type TrendingImage = 'small' | 'large'
 	type ImageSize = RegularImage | TrendingImage

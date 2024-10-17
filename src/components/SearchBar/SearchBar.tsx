@@ -6,14 +6,12 @@ import Input from '../Input/Input'
 
 type SearchBarProps = {
 	placeholder: string
-	// onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export default function SearchBar({ placeholder }: SearchBarProps) {
 	const dispatch: AppDispatch = useDispatch()
 
 	const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-		// dispatch(filterProductions(e.target.value))
 		dispatch(setSearchTerm(e.target.value))
 	}
 	return (
@@ -22,8 +20,7 @@ export default function SearchBar({ placeholder }: SearchBarProps) {
 				<IconSearch className="" />
 			</div>
 			<div className="input-box">
-				{/* <input type="text" placeholder={placeholder} className="" onChange={handleSearch} /> */}
-				<Input type="text" placeholder={placeholder} className="input" onChange={handleSearch} />
+				<Input type="text" placeholder={placeholder} className="input" name="search" onChange={handleSearch} />
 			</div>
 		</div>
 	)

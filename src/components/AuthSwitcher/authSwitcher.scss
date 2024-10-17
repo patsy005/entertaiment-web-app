@@ -9,10 +9,22 @@
 		text-decoration: none;
 		color: $red;
 		margin-left: 0.9rem;
-        transition: opacity 0.3s ease-in-out;
+		transition: opacity 0.3s ease-in-out;
 
 		&:hover {
 			opacity: 0.9;
 		}
+	}
+
+	&__attention {
+		color: $red;
+		font-size: 1.7rem;
+		font-weight: bold;
+		margin-right: 1rem;
+	}
+
+	&__server-error {
+		padding-bottom: 0.5rem;
+		border-bottom: 1px solid $red;
 	}
 }
