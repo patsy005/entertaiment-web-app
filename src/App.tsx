@@ -8,7 +8,7 @@ import { fetchProductions } from './slices/productionsSlice'
 import Movies from './pages/Movies'
 import TVSeries from './pages/TVSeries'
 import Bookmarked from './pages/Bookmarked'
-import Login from './pages/Login'
+// import Login from './pages/Login'
 
 const router = createBrowserRouter([
 	{
