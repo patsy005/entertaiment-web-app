@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import Spinner from '../../components/Spinner/Spinner'
 import { selectErrorProductions, selectIsLoadingProductions } from '../../slices/productionsSlice'
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage'
+import Footer from '../../components/Footer/Footer'
 
 export default function Layout() {
 	const isLoading = useSelector(selectIsLoadingProductions)
@@ -22,6 +23,7 @@ export default function Layout() {
 						{productionsError !== '' && <ErrorMessage />}
 
 						{productionsError === '' && <Outlet />}
+						<Footer />
 					</main>
 				</>
 			)}

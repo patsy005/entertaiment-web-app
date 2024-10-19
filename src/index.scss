@@ -17,6 +17,7 @@
 @import '../src/components/Spinner/spinner.scss';
 @import '../src/components/ErrorMessage/errorMessage.scss';
 @import '../src/components/SearchResults/searchResults.scss';
+@import '../src/components/Footer/footer.scss';
 
 *,
 *::before,
@@ -50,7 +51,6 @@ h4 {
 }
 
 .main {
-
 	&__productions-error {
 		height: calc(100vh - 10rem);
 		display: flex;
@@ -70,7 +70,6 @@ h4 {
 }
 
 @media screen and (min-width: 1200px) {
-
 	.app-container {
 		display: flex;
 	}
